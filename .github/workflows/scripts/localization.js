@@ -1,1 +1,1 @@
-console.log(process.env.GITHUB_CONTEXT)
+console.log(process.env.argv)
