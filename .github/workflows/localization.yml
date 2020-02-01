@@ -12,6 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+
+
     - name: Set Node.js 10.13.0
       uses: actions/setup-node@master
       with:
@@ -19,6 +21,11 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+
+    - name : GITHUB CONTEXT
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
 
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
