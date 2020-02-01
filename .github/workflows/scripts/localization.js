@@ -1,9 +1,12 @@
+const axios = require('axios');
+console.log(axios)
+
 (async () => {
   try {
     // check for project keys
     let { CROWDIN_KEY,  CROWDIN_PROJECT_NAME } = process.env;
-    if (!CROWDIN_KEY && !CROWDIN_PROJECT_NAME) {
-      console.error('Config keys missing')
+    if (!CROWDIN_KEY || !CROWDIN_PROJECT_NAME) {
+      console.error('Config keys missing.')
       process.exit(1);
     }
 
