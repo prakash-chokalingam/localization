@@ -3,8 +3,8 @@
     // check for project keys
     let { CROWDIN_KEY,  CROWDIN_PROJECT_NAME } = process.env;
     if (!CROWDIN_KEY && !CROWDIN_PROJECT_NAME) {
-      throw new Error('Config keys missing');
-      // process.exit(1);
+      console.error('Config keys missing')
+      process.exit(0);
     }
 
     // create crowdin axios instance
