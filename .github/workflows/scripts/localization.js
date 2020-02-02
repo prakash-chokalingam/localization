@@ -4,6 +4,13 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
+process.env.CROWDIN_KEY = '0f6c88b33fb60c125d53d5c4dffc0cf1';
+process.env.CROWDIN_PROJECT_NAME = 'fd-test';
+process.env.TOKEN = 'bdd0f1a49708f68d98e28f46a845d01103f9ed82';
+
+// process.env.SKIP_DOWNLOAD = false;
+process.env.SKIP_CROWDIN_BUILD=true;
+
 class Localization {
   constructor () {
      // check for project keys
@@ -14,6 +21,7 @@ class Localization {
     }
     this.gitContext =  github.context.payload;
     this.gitMessage = github.context.payload.head_commit.message;
+    // this.gitMessage = '/';
     this.provider = this.createProviderInstance(CROWDIN_KEY, CROWDIN_PROJECT_NAME);
     this.octokit = new github.GitHub(TOKEN);
     this.downloadFiles();
@@ -43,9 +51,7 @@ class Localization {
       try {
         let files = await this.provider.get(downloadUrl);
         let zipPath = this.createZipFile(files.data);
-        console.log(zipPath)
-        console.log('Created')
-        let branch = this.createBranch()
+        let branch = await this.createBranch();
       } catch(e) {
         console.log('❌ Downloading files failed');
         console.log(e)
@@ -73,10 +79,15 @@ class Localization {
   }
 
   async createBranch() {
-    console.log(this.gitContext.repository.owner)
-    // await octokit.git.createRef({
-
-    // })
+    let owner = this.gitContext.repository.owner.name;
+    let date = new Date();
+    let ref = `refs/localization/update_${date.getDate()}-${date.getMonth()-1 || 1}-${date.getFullYear()}_${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}_${date.getMilliseconds()}`
+    await octokit.git.createRef({
+      owner,
+      repo,
+      ref,
+      sha: this.gitContext.sha,
+    })
   }
 }
 
