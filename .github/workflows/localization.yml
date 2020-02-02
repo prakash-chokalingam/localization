@@ -19,7 +19,7 @@ jobs:
 
     - name : Setting environment
       env:
-        GITHUB_CONTEXT: test
+        hello: test
       run: echo "Done"
 
     - name: Install dependencies
