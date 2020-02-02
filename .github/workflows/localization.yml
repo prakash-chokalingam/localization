@@ -23,7 +23,7 @@ jobs:
       run: echo "Done"
 
     - name: Install dependencies
-      run: npm install axios@^0.19.2 @actions/core^1.2.2 @actions/github@^2.1.0
+      run: npm install axios@^0.19.2 @actions/github@^2.1.0 @actions/core@^1.2.2
 
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
