@@ -20,10 +20,5 @@ jobs:
     - name: Install dependencies
       run: npm install axios@^0.19.2 && npm install @actions/github@^2.1.0
 
-    - name : Setting environment
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "Done"
-
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
