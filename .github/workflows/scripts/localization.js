@@ -5,7 +5,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 console.log(github.context)
-console.log(core.getState('hello'))
+console.log(core.getInput('hello'))
 
 
 // process.env.SKIP_DOWNLOAD = false;
