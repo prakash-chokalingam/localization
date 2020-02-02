@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+console.log(process.argv)
 
 // process.env.SKIP_DOWNLOAD = false;
 process.env.SKIP_CROWDIN_BUILD=true;

@@ -22,9 +22,10 @@ jobs:
     - name: Install dependencies
       run: npm install axios@^0.19.2
 
-    - name : Github Context
+    - name : Setting environment
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
+
       run: echo "Done"
 
     - name: Run automation
