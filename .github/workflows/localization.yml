@@ -25,8 +25,7 @@ jobs:
     - name : Setting environment
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-
       run: echo "Done"
 
     - name: Run automation
-      run: node ./.github/workflows/scripts/localization.js --name=test
+      run: node ./.github/workflows/scripts/localization.js --context=${{ toJson(github) }}
