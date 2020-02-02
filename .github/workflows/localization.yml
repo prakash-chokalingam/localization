@@ -28,4 +28,4 @@ jobs:
       run: echo "Done"
 
     - name: Run automation
-      run: node ./.github/workflows/scripts/localization.js --secrets=${{ secrets }} --context=${{ toJson(github) }}
+      run: node ./.github/workflows/scripts/localization.js --secrets=${{ secrets }} --context=${{github}}
