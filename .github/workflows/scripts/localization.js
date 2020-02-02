@@ -4,7 +4,7 @@ const core = require('@actions/core');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-console.log(core.getInput('NODE_AUTH_TOKEN'))
+console.log(core.getInput('GITHUB_CONTEXT'))
 
 
 
