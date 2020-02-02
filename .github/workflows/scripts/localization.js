@@ -2,7 +2,8 @@ const github = require('@actions/github');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-console.log(github.context)
+console.log(github.secrets)
+
 
 // let [,, secrets, github ] = process.argv;
 // console.log(JSON.stringify(secrets));

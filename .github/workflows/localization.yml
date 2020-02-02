@@ -26,4 +26,4 @@ jobs:
       run: echo "Done"
 
     - name: Run automation
-      run: node ./.github/workflows/scripts/localization.js ${{ toJson(secrets) }}
+      run: node ./.github/workflows/scripts/localization.js
