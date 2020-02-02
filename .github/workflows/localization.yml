@@ -1,7 +1,4 @@
 name: Localization
-inputs:
-  name:
-    default: 'GitHub'
 
 on:
   push:
