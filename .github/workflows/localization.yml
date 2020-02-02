@@ -19,7 +19,7 @@ jobs:
 
     - name : Setting environment
       env:
-        hello: test
+        projectName: ${{secrets.CROWDIN_PROJECT_NAME}}
       run: echo "Done"
 
     - name: Install dependencies
@@ -27,3 +27,5 @@ jobs:
 
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.CROWDIN_PROJECT_NAME}}
