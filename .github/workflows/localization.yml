@@ -23,6 +23,7 @@ jobs:
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
       env:
+        TOKEN: ${{secrets.TOKEN}}
         CROWDIN_KEY: ${{secrets.CROWDIN_KEY}}
         CROWDIN_PROJECT_NAME: ${{secrets.CROWDIN_PROJECT_NAME}}
         SKIP_DOWNLOAD: ${{secrets.SKIP_DOWNLOAD}}
