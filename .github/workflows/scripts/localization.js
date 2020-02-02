@@ -7,7 +7,7 @@ const path = require('path');
 class Localization {
   constructor () {
      // check for project keys
-    let { CROWDIN_KEY, CROWDIN_PROJECT_NAME, GITHUB_TOKEN } = process.env;
+    let { CROWDIN_KEY, CROWDIN_PROJECT_NAME, TOKEN } = process.env;
     if (!CROWDIN_KEY || !CROWDIN_PROJECT_NAME) {
       console.error('Config keys missing.')
       process.exit(1);
@@ -16,7 +16,7 @@ class Localization {
     this.gitMessage = '--skip-download';
     // github.context.payload.head_commit.message;
     this.provider = this.createProviderInstance(CROWDIN_KEY, CROWDIN_PROJECT_NAME);
-    this.octokit = new github.GitHub(GITHUB_TOKEN);
+    this.octokit = new github.GitHub(TOKEN);
     this.downloadFiles();
     this.uploadFiles();
   }
