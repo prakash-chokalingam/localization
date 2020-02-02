@@ -4,8 +4,8 @@ const path = require('path');
 console.log(process.argv)
 
 let [,, secrets, github ] = process.argv;
-console.log(secrets.CROWDIN_PROJECT_NAME);
-console.log(github);
+console.log(JSON.stringify(secrets));
+console.log(JSON.stringify(github));
 // process.env.SKIP_DOWNLOAD = false;
 process.env.SKIP_CROWDIN_BUILD=true;
 
