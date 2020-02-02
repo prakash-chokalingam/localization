@@ -4,21 +4,21 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
-
-
-
 class Localization {
   constructor () {
      // check for project keys
-    let { CROWDIN_KEY, CROWDIN_PROJECT_NAME } = process.env;
+    let { CROWDIN_KEY, CROWDIN_PROJECT_NAME, GITHUB_TOKEN } = process.env;
     if (!CROWDIN_KEY || !CROWDIN_PROJECT_NAME) {
       console.error('Config keys missing.')
       process.exit(1);
     }
-    this.gitMessage = github.context.payload.head_commit.message;
-    console.log(this.gitMessage)
+    this.gitContext =  github.context.payload;
+    this.gitMessage = '--skip-download';
+    // github.context.payload.head_commit.message;
     this.provider = this.createProviderInstance(CROWDIN_KEY, CROWDIN_PROJECT_NAME);
+    this.octokit = new github.GitHub(GITHUB_TOKEN);
     this.downloadFiles();
+    this.uploadFiles();
   }
 
   createProviderInstance(key, project) {
@@ -34,9 +34,7 @@ class Localization {
 
   async downloadFiles() {
     let { SKIP_DOWNLOAD, SKIP_CROWDIN_BUILD } = process.env;
-
-    // TODO: check git msg also
-    let skipDownload = SKIP_DOWNLOAD;
+    let skipDownload = SKIP_DOWNLOAD | this.gitMessage.includes('--skip-download');
     skipDownload && console.log('Download skipped');
 
     if (!skipDownload) {
@@ -48,10 +46,22 @@ class Localization {
         let zipPath = this.createZipFile(files.data);
         console.log(zipPath)
         console.log('Created')
+        let branch = this.createBranch()
       } catch(e) {
         console.log('❌ Downloading files failed');
         console.log(e)
       }
+    }
+  }
+
+
+  async uploadFiles() {
+    let { SKIP_UPLOAD } = process.env;
+    let skipUpload = SKIP_UPLOAD | this.gitMessage.includes('--skip-upload');
+    skipUpload && console.log('Uploading to provider skipped');
+
+    if (!skipUpload) {
+      console.log('Uploading files from provider...');
     }
   }
 
@@ -61,6 +71,13 @@ class Localization {
     !fs.existsSync(dir) && fs.mkdirSync(dir);
     fs.writeFileSync(zipPath, data, { encoding: 'ascii'});
     return zipPath;
+  }
+
+  async createBranch() {
+    console.log(this.gitContext.repository.owner)
+    // await octokit.git.createRef({
+
+    // })
   }
 }
 
