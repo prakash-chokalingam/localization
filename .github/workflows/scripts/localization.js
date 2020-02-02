@@ -1,13 +1,13 @@
 const github = require('@actions/github');
+const core = require('@actions/core');
+
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-console.log(github.secrets)
+console.log(core.getInput('NODE_AUTH_TOKEN'))
 
 
-// let [,, secrets, github ] = process.argv;
-// console.log(JSON.stringify(secrets));
-// console.log(JSON.stringify(github));
+
 // process.env.SKIP_DOWNLOAD = false;
 process.env.SKIP_CROWDIN_BUILD=true;
 
