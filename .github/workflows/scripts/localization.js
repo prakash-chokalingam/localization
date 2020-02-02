@@ -82,7 +82,7 @@ class Localization {
     let owner = this.gitContext.repository.owner.name;
     let date = new Date();
     let ref = `refs/localization/update_${date.getDate()}-${date.getMonth()-1 || 1}-${date.getFullYear()}_${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}_${date.getMilliseconds()}`
-    await octokit.git.createRef({
+    await this.octokit.git.createRef({
       owner,
       repo,
       ref,
