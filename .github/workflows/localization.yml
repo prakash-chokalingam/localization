@@ -17,15 +17,13 @@ jobs:
       with:
         node-version: 10.13.0
 
-    - name : Setting environment
-      env:
-        projectName: ${{secrets.CROWDIN_PROJECT_NAME}}
-      run: echo "Done"
-
     - name: Install dependencies
       run: npm install axios@^0.19.2 @actions/github@^2.1.0 @actions/core@^1.2.2
 
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
       env:
-        NODE_AUTH_TOKEN: ${{secrets.CROWDIN_PROJECT_NAME}}
+        CROWDIN_KEY: ${{secrets.CROWDIN_KEY}}
+        CROWDIN_PROJECT_NAME: ${{secrets.CROWDIN_PROJECT_NAME}}
+        SKIP_DOWNLOAD: ${{secrets.SKIP_DOWNLOAD}}
+        SKIP_UPLOAD: ${{secrets.SKIP_DOWNLOAD}}

@@ -4,13 +4,16 @@ const core = require('@actions/core');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-console.log(process.env)
+console.log(process.env.SKIP_DOWNLOAD)
+if (process.env.SKIP_DOWNLOAD) {
+  console.log('download')
+}
 // console.log(github.context)
 // console.log(core.getInput('hello'))
 
 
 // process.env.SKIP_DOWNLOAD = false;
-process.env.SKIP_CROWDIN_BUILD=true;
+// process.env.SKIP_CROWDIN_BUILD=true;
 
 // class Localization {
 //   constructor () {
