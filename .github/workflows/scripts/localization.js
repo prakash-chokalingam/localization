@@ -8,7 +8,7 @@ class Localization {
   constructor () {
      // check for project keys
     let { CROWDIN_KEY, CROWDIN_PROJECT_NAME, TOKEN } = process.env;
-    if (!CROWDIN_KEY || !CROWDIN_PROJECT_NAME || TOKEN) {
+    if (!CROWDIN_KEY || !CROWDIN_PROJECT_NAME || !TOKEN) {
       console.error('Config keys missing.')
       process.exit(1);
     }
