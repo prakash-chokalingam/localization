@@ -16,7 +16,6 @@ jobs:
       uses: actions/setup-node@master
       with:
         node-version: 10.13.0
-        NODE_AUTH_TOKEN: ${{ secrets.CROWDIN_KEY }}
 
     - name : Setting environment
       env:
