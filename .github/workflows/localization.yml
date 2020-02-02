@@ -31,4 +31,8 @@ jobs:
       run: npm install axios@^0.19.2 @actions/github@^2.1.0 @actions/core@^1.2.2
 
     - name: Run automation
+      with:
+          first_name: Mona
+          middle_name: The
+          last_name: Octocat
       run: node ./.github/workflows/scripts/localization.js
