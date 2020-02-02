@@ -29,4 +29,4 @@ jobs:
       run: echo "Done"
 
     - name: Run automation
-      run: node ./.github/workflows/scripts/localization.js $GITHUB_CONTEXT
+      run: node ./.github/workflows/scripts/localization.js --name=test
