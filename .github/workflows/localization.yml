@@ -1,4 +1,7 @@
 name: Localization
+inputs:
+  name:
+    default: 'GitHub'
 
 on:
   push:
@@ -27,7 +30,3 @@ jobs:
 
     - name: Run automation
       run: node ./.github/workflows/scripts/localization.js
-      with:
-        first_name: Mona
-        middle_name: The
-        last_name: Octocat
