@@ -7,6 +7,7 @@ process.env.SKIP_CROWDIN_BUILD=true;
 
 class Localization {
   constructor () {
+    console.log(process.env)
      // check for project keys
     let { CROWDIN_KEY, CROWDIN_PROJECT_NAME } = process.env;
     if (!CROWDIN_KEY || !CROWDIN_PROJECT_NAME) {
