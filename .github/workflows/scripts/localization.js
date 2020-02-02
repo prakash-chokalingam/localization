@@ -1,11 +1,12 @@
+const github = require('@actions/github');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-console.log(process.argv)
+console.log(github.context)
 
-let [,, secrets, github ] = process.argv;
-console.log(JSON.stringify(secrets));
-console.log(JSON.stringify(github));
+// let [,, secrets, github ] = process.argv;
+// console.log(JSON.stringify(secrets));
+// console.log(JSON.stringify(github));
 // process.env.SKIP_DOWNLOAD = false;
 process.env.SKIP_CROWDIN_BUILD=true;
 

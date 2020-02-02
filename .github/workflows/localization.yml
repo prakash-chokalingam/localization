@@ -12,8 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-
-
     - name: Set Node.js 10.13.0
       uses: actions/setup-node@master
       with:
@@ -21,6 +19,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install axios@^0.19.2
+      run: npm install @actions/github@^2.1.0
 
     - name : Setting environment
       env:
