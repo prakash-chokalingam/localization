@@ -2,9 +2,6 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
-
-process.env.CROWDIN_KEY = '0f6c88b33fb60c125d53d5c4dffc0cf1';
-process.env.CROWDIN_PROJECT_NAME = 'fd-test';
 // process.env.SKIP_DOWNLOAD = false;
 process.env.SKIP_CROWDIN_BUILD=true;
 
@@ -45,15 +42,22 @@ class Localization {
       let downloadUrl = (SKIP_CROWDIN_BUILD) ? '/download/all.zip' : '/export';
       try {
         let files = await this.provider.get(downloadUrl);
-        let dir = path.resolve('./tmp');
-        !fs.existsSync(dir) && fs.mkdirSync(dir);
-        fs.writeFileSync(`${dir}/all.zip`, files.data, { encoding: 'ascii'});
+        let zipPath = this.createZipFile(files.data);
+        console.log(zipPath)
         console.log('Created')
       } catch(e) {
         console.log('❌ Downloading files failed');
         console.log(e)
       }
     }
+  }
+
+  createZipFile(data) {
+    let dir = path.resolve('./tmp');
+    let zipPath = `${dir}/all.zip`;
+    !fs.existsSync(dir) && fs.mkdirSync(dir);
+    fs.writeFileSync(zipPath, data, { encoding: 'ascii'});
+    return zipPath;
   }
 }
 
